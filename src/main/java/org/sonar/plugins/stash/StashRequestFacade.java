@@ -93,23 +93,25 @@ public class StashRequestFacade implements IssuePathResolver {
     }
   }
 
+
   /**
-   * Reset pull-request approval
+   * Mark that pull-request NEEDS WORK
    */
-  public void resetPullRequestApproval(PullRequestRef pr, StashClient stashClient) {
+  public void markPullRequestNeedsWork(PullRequestRef pr, StashClient stashClient) {
     try {
-      stashClient.resetPullRequestApproval(pr);
+      stashClient.markPullRequestNeedsWork(pr);
 
       // squid:S2629 : no evaluation required if the logging level is not activated
       if (LOGGER.isInfoEnabled()) {
-        LOGGER.info("Pull-request {} ({}/{}) NOT APPROVED by user \"{}\"",
-            pr.pullRequestId(), pr.project(), pr.repository(), stashClient.getLogin());
+        LOGGER.info("Pull-request {} ({}/{}) marked NEEDS WORK by user \"{}\"",
+                    pr.pullRequestId(), pr.project(), pr.repository(), stashClient.getLogin());
       }
 
     } catch (StashClientException e) {
-      LOGGER.error("Unable to reset pull-request approval", e);
+      LOGGER.error("Unable to set NEEDS WORK status on pull-request", e);
     }
   }
+
 
   /**
    * Add a reviewer to the current pull-request.

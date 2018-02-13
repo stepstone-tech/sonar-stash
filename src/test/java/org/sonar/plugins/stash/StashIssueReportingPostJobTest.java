@@ -121,7 +121,7 @@ public class StashIssueReportingPostJobTest extends StashTest {
     verify(stashRequestFacade, times(0))
         .approvePullRequest(eq(pr), (StashClient) Mockito.anyObject());
     verify(stashRequestFacade, times(0))
-        .resetPullRequestApproval(eq(pr), (StashClient) Mockito.anyObject());
+        .markPullRequestNeedsWork(eq(pr), (StashClient) Mockito.anyObject());
   }
 
   @Test
@@ -162,7 +162,7 @@ public class StashIssueReportingPostJobTest extends StashTest {
     verify(stashRequestFacade, times(0))
         .approvePullRequest(eq(pr), (StashClient) Mockito.anyObject());
     verify(stashRequestFacade, times(0))
-        .resetPullRequestApproval(eq(pr), (StashClient) Mockito.anyObject());
+        .markPullRequestNeedsWork(eq(pr), (StashClient) Mockito.anyObject());
   }
 
   @Test
@@ -183,11 +183,11 @@ public class StashIssueReportingPostJobTest extends StashTest {
     verify(stashRequestFacade, times(0))
         .approvePullRequest(eq(pr), (StashClient) Mockito.anyObject());
     verify(stashRequestFacade, times(0))
-        .resetPullRequestApproval(eq(pr), (StashClient) Mockito.anyObject());
+        .markPullRequestNeedsWork(eq(pr), (StashClient) Mockito.anyObject());
   }
 
   @Test
-  public void testExecuteOnWithResetCommentActivated() throws Exception {
+  public void testExecuteOnWithResetmvnCommentActivated() throws Exception {
     when(config.resetComments()).thenReturn(true);
 
     myJob = new StashIssueReportingPostJob(config, stashRequestFacade, server);
@@ -221,7 +221,7 @@ public class StashIssueReportingPostJobTest extends StashTest {
     verify(stashRequestFacade, times(0))
         .approvePullRequest(eq(pr), (StashClient) Mockito.anyObject());
     verify(stashRequestFacade, times(0))
-        .resetPullRequestApproval(eq(pr), (StashClient) Mockito.anyObject());
+        .markPullRequestNeedsWork(eq(pr), (StashClient) Mockito.anyObject());
   }
 
   @Test

@@ -142,7 +142,7 @@ public class StashIssueReportingPostJob implements PostJob {
       if (shouldApprovePullRequest(config.getApprovalSeverityThreshold(), issueReport)) {
         stashRequestFacade.approvePullRequest(pr, stashClient);
       } else {
-        stashRequestFacade.resetPullRequestApproval(pr, stashClient);
+        stashRequestFacade.markPullRequestNeedsWork(pr, stashClient);
       }
     }
   }

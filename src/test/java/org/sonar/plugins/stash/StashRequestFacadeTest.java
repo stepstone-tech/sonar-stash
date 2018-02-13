@@ -783,20 +783,20 @@ public class StashRequestFacadeTest extends StashTest {
 
 
   @Test
-  public void addResetPullRequestApproval() throws Exception {
+  public void addMarkNeedsWorkPullRequestApproval() throws Exception {
 
-    myFacade.resetPullRequestApproval(pr, stashClient);
-    verify(stashClient, times(1)).resetPullRequestApproval(pr);
+    myFacade.markPullRequestNeedsWork(pr, stashClient);
+    verify(stashClient, times(1)).markPullRequestNeedsWork(pr);
   }
 
 
   @Test
-  public void addResetPullRequestApprovalException() throws Exception {
+  public void markPullRequestNeedsWorkException() throws Exception {
 
     StashClient StaCli = mock(StashClient.class);
-    doThrow(StashClientException.class).when(StaCli).resetPullRequestApproval(any());
+    doThrow(StashClientException.class).when(StaCli).markPullRequestNeedsWork(any());
 
-    myFacade.resetPullRequestApproval(pr, StaCli);
+    myFacade.markPullRequestNeedsWork(pr, StaCli);
   }
 
 
